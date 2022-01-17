@@ -1,0 +1,49 @@
+<div class="one">
+    <h1>file info</h1>
+</div>
+<div class="two info">
+    <ul>
+        {{#each file}}
+        <li>
+            <div class="txt">
+                <p class="dsc">id: </p>
+                <p class="info-content"> {{id}}</p>
+            </div>
+
+        </li>
+        <li>
+
+            <div class="txt">
+                <p class="dsc">name: </p>
+                <p class="info-content"> {{name}}</p>
+            </div>
+        </li>
+        <li>
+
+            <div class="txt">
+                <p class="dsc">path: </p>
+                <p class="info-content"> {{path}}</p>
+            </div>
+        </li>
+        <li>
+            <div class="txt">
+                <p class="dsc">size: </p>
+                <p class="info-content"> {{size}}</p>
+            </div>
+        </li>
+        <li>
+            <div class="txt">
+                <p class="dsc">type: </p>
+                <p class="info-content"> {{type}}</p>
+            </div>
+        </li>
+        <li>
+            <div class="txt">
+                <p class="dsc">savedate: </p>
+                <p class="info-content"> {{savedate}}</p>
+            </div>
+        </li>
+
+        {{/each}}
+    </ul>
+</div>

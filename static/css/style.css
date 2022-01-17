@@ -40,39 +40,83 @@ ul{
 .container{
     width: 100vw;
     height: 200px;
-    background: aqua;
+    background: rgb(255, 255, 255);
     margin: auto;
-    padding: 10px;
+    padding: 0px;
+    display: flex;
 }
 
 
 .one {
     
-    width: 15%;
-    height: 200px;
-    background: red;
+    width: 20vw;
+    height: 93.5vh;
+    background: rgb(196, 193, 193);
     float: left;
+    padding: 0;
+    margin: 0;
+    text-align: center;
     
 }  
+.one h1{
+    font-size: 20px;
+    color: gray;
+}
 
 .two{
-    margin-left: 15%;
-    height: 200px;
- 
+
+    display: flex;
+    flex-direction: column;
+
 } 
 
-
-.second-header ul{
-    display: flex;
-    list-style: none;
+.second-header{
+   background-color:rgb(121, 141, 199);
+    
 }
 
-.second-header ul li{
-    padding: 1rem;
-    width: 4rem;
+.second-header td{
+    text-align: center;
 }
+
+.two {
+    padding: 0;
+    margin: 0;
+    width: 80vw;
+}
+
+.two table{
+    width: 80vw;
+    
+
+}
+
+.two table td{
+    text-align: center;
+}
+
 
 table td{
     padding: 1rem;
     width: 4rem;
+}
+
+.info  ul  li {
+    list-style-type: none;
+}
+
+.txt{
+    display: flex;
+    flex-direction: row;
+}
+
+.dsc{
+    margin-right: 1rem;
+    text-decoration: underline;
+    color: rgb(49, 49, 148);
+    font-weight: bolder;
+}
+
+.info-content{
+    color: rgb(131, 131, 135);
 }

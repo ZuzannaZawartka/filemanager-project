@@ -1,46 +1,22 @@
-<div class="second-header">
-    <ul>
-        <li>id</li>
-        <li>obraz</li>
-        <li>name</li>
-        <li>size</li>
-        <li>type</li>
-        <li>-</li>
-        <li>-</li>
-        <li>-</li>
-    </ul>
+<div class="one">
+    <h1>filemanager</h1>
+    <a href="/reset">USUŃ DANE O PLIKACH Z TABLICY</a>
 </div>
-<table>
-    {{#each data}}
-    <tr>
+<div class="two">
 
-        <td class="id-table">
-            {{id}}
-        </td>
-        <td>
-            {{image}}
-        </td>
-        <td>
-            {{name}}
-        </td>
-        <td>
-            {{size}}
-        </td>
-        <td>
-            {{type}}
-        </td>
-        <td>
-            <a href="/delete/?id={{id}}">delete</a>
-        </td>
-        <td>
-            <a href="/info">info</a>
-
-        </td>
-        <td>
-            <a href="/download">download</a>
-
-        </td>
-    </tr>
-
-    {{/each}}
-</table>
+    <table>
+        <tr class="second-header">
+            <td>id</td>
+            <td>obraz</td>
+            <td>name</td>
+            <td>size</td>
+            <td>type</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        {{#each data}}
+        {{> filemanagerElement}}
+        {{/each}}
+    </table>
+</div>
