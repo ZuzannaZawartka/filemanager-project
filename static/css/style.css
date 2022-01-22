@@ -120,3 +120,8 @@ table td{
 .info-content{
     color: rgb(131, 131, 135);
 }
+
+img{
+    width: 4rem;
+    height: 4rem;
+}

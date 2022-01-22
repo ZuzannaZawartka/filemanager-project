@@ -7,6 +7,7 @@ app.use(express.static('static'))
 let hbs = require('express-handlebars');
 const { count } = require("console");
 const { mainModule } = require("process");
+const { unwatchFile } = require("fs");
 app.set('views', path.join(__dirname, 'views'));         // ustalamy katalog views
 app.engine('hbs', hbs({ defaultLayout: 'main.hbs' }));   // domyślny layout, potem można go zmienić
 app.engine('hbs', hbs({
@@ -30,6 +31,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/filemanager", function (req, res) {
+
     res.render('filemanager.hbs', { data });
 });
 
@@ -79,12 +81,11 @@ app.get("/download/", function (req, res) {
 
     let file = [];
     let filePlace = 0;
-    data.forEach(element => {
+    console.log(req.query.id)
 
+    data.forEach(element => {
         if (element.id == req.query.id) {
-            //  res.download(data[filePlace].path, data[filePlace].name)
-            res.download(data[req.query.id].path, data[req.query.id].name)
-            console.log(data[req.query.id].path)
+            res.download(data[filePlace].path, data[filePlace].name)
         }
         filePlace++
     });
@@ -102,21 +103,46 @@ app.post('/fileUpload', function (req, res) {
 
         let filesUploaded = files.imagetoupload
         res.redirect('/filemanager')
-        console.log(req.body)
 
-        console.log(files)
+        let types = [
+            { name: "image/jpeg", img: "/image/jpeg.png" },
+            { name: "image/jpg", img: "/image/jpg.png" },
+            { name: "image/png", img: "/image/png.png" },
+            { name: "image/gif", img: "/image/gif.png" },
+            { name: "application/pdf", img: "/image/pdf.png" },
+            { name: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", img: "/image/doc.png" },
+            //  { name: "application/vnd.oasis.opendocument.presentation", img: "/image/odp.png" },
+            { name: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", img: "/image/xls.png" },
+            { name: "application/x-zip-compressed", img: "/image/zip.png" },
+            { name: "text/plain", img: "/image/txt.png" },
+            { name: "application/vnd.ms-powerpoint", img: "/image/ppt.png" },
+
+
+
+        ]
         if (Array.isArray(filesUploaded)) {
+
             filesUploaded.forEach(element => {
 
                 filesToCount++
                 id = filesToCount
-                let img = element.name
+                let img;
+                types.forEach(element2 => {
+                    if (element2.name == element.type) {
+                        return img = element2.img
+                    }
+                });
+
+                if (img == undefined) {
+                    img = "/image/none.png"
+                }
+
                 let name = element.name
                 let size = element.size
                 let path = element.path
                 let savedate = element.lastModifiedDate.getTime()
                 let type = element.type
-                data.push({ id, name, size, type, path, savedate })
+                data.push({ id, img, name, size, type, path, savedate })
 
 
             });
@@ -124,17 +150,26 @@ app.post('/fileUpload', function (req, res) {
             //let id = data[data.length].id + 1
             filesToCount++
             id = filesToCount
-            let img = filesUploaded.name
+            let img;
+            types.forEach(element2 => {
+                if (element2.name == filesUploaded.type) {
+                    return img = element2.img
+                }
+            });
+
+            if (img == undefined) {
+                img = "/image/none.png"
+            }
             let name = filesUploaded.name
             let size = filesUploaded.size
             let path = filesUploaded.path
             let savedate = filesUploaded.lastModifiedDate.getTime()
             let type = filesUploaded.type
-            data.push({ id, name, size, type, path, savedate })
+            data.push({ id, img, name, size, type, path, savedate })
         }
 
 
-
+        console.log(data)
 
 
     });
